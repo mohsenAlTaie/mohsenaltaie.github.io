@@ -3,101 +3,185 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YoutuneX Bot – Terms of Use</title>
+<title>YoutuneX | Terms of Use</title>
 
 <style>
-    body {
-        margin: 0;
-        font-family: Arial, Helvetica, sans-serif;
-        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-        color: #fff;
-    }
-    .container {
-        max-width: 900px;
-        margin: auto;
-        padding: 20px;
-    }
-    .card {
-        background: rgba(0,0,0,0.55);
-        border-radius: 15px;
-        padding: 20px;
-        margin-bottom: 25px;
-        animation: fadeUp 0.8s ease;
-    }
-    h1 {
-        text-align: center;
-        margin-bottom: 30px;
-    }
-    h2 {
-        border-bottom: 2px solid #00e0ff;
-        padding-bottom: 8px;
-        margin-bottom: 15px;
-    }
-    p {
-        line-height: 1.8;
-        font-size: 15px;
-    }
-    .footer {
-        text-align: center;
-        margin-top: 30px;
-        font-size: 13px;
-        opacity: 0.8;
-    }
+:root{
+  --bg:#0b0f1a;
+  --card:#12182b;
+  --accent:#5da9ff;
+  --text:#eaeaf0;
+}
 
-    @keyframes fadeUp {
-        from {
-            opacity: 0;
-            transform: translateY(25px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
+*{box-sizing:border-box;font-family:Segoe UI,Tahoma,sans-serif}
+
+body{
+  margin:0;
+  background:linear-gradient(135deg,#0b0f1a,#050711);
+  color:var(--text);
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.container{
+  width:95%;
+  max-width:900px;
+  animation:fadeIn 1.2s ease;
+}
+
+.header{
+  text-align:center;
+  margin-bottom:20px;
+}
+
+.header h1{
+  margin:0;
+  font-size:32px;
+  letter-spacing:1px;
+}
+
+.lang-switch{
+  margin-top:10px;
+}
+
+.lang-switch button{
+  background:none;
+  border:1px solid var(--accent);
+  color:var(--accent);
+  padding:6px 14px;
+  margin:0 5px;
+  border-radius:20px;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.lang-switch button:hover{
+  background:var(--accent);
+  color:#000;
+}
+
+.card{
+  background:rgba(18,24,43,.9);
+  backdrop-filter:blur(8px);
+  border-radius:18px;
+  padding:25px;
+  box-shadow:0 20px 40px rgba(0,0,0,.5);
+  animation:slideUp 1s ease;
+}
+
+.section{
+  margin-bottom:20px;
+}
+
+.section h2{
+  color:var(--accent);
+  margin-bottom:8px;
+}
+
+.footer{
+  text-align:center;
+  opacity:.6;
+  font-size:13px;
+  margin-top:15px;
+}
+
+@keyframes fadeIn{
+  from{opacity:0}
+  to{opacity:1}
+}
+
+@keyframes slideUp{
+  from{transform:translateY(40px);opacity:0}
+  to{transform:translateY(0);opacity:1}
+}
 </style>
 </head>
 
 <body>
+
 <div class="container">
 
-    <h1>YoutuneX Bot – Terms of Use</h1>
-
-    <!-- English -->
-    <div class="card">
-        <h2>English</h2>
-        <p>
-            YoutuneX Bot allows users to download or convert content from supported platforms.
-            All downloads are processed automatically and temporarily.
-        </p>
-        <p>
-            We do not collect or store any personal data from users.
-            Users are fully responsible for how they use downloaded content.
-        </p>
-        <p>
-            Any misuse of the bot that violates platform rules or local laws is the sole responsibility of the user.
-        </p>
+  <div class="header">
+    <h1>YoutuneX</h1>
+    <div class="lang-switch">
+      <button onclick="setLang('en')">English</button>
+      <button onclick="setLang('ar')">العربية</button>
     </div>
+  </div>
 
-    <!-- Arabic -->
-    <div class="card">
-        <h2>العربية</h2>
-        <p>
-            يتيح بوت YoutuneX للمستخدمين تحميل أو تحويل المحتوى من المنصات المدعومة.
-            جميع الملفات تكون مؤقتة ولا يتم الاحتفاظ بها.
-        </p>
-        <p>
-            نحن لا نقوم بجمع أو تخزين أي معلومات شخصية عن المستخدمين.
-            المستخدم يتحمل المسؤولية الكاملة عن استخدام المحتوى الذي يتم تحميله.
-        </p>
-        <p>
-            أي استخدام مخالف لشروط المنصات أو القوانين المحلية يقع على عاتق المستخدم فقط.
-        </p>
-    </div>
+  <div class="card">
+    <div id="content"></div>
+  </div>
 
-    <div class="footer">
-        © 2025 YoutuneX Bot – Developed by Mohsen Al-Taie
-    </div>
+  <div class="footer">
+    © 2025 Developed by Mohsen Al-Taie
+  </div>
 
 </div>
+
+<script>
+const data={
+  en:`
+  <div class="section">
+    <h2>Terms of Use</h2>
+    <p>
+      YoutuneX allows users to download content from supported platforms.
+      All downloaded files are temporary and removed automatically.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>User Responsibility</h2>
+    <p>
+      The user is fully responsible for how the content is used.
+      You must comply with the laws and terms of each platform.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>Privacy</h2>
+    <p>
+      We do not collect or store any personal information.
+      No logs, no tracking, full privacy.
+    </p>
+  </div>
+  `,
+  ar:`
+  <div class="section">
+    <h2>سياسة الاستخدام</h2>
+    <p>
+      يتيح بوت YoutuneX للمستخدمين تحميل المحتوى من المنصات المدعومة.
+      جميع الملفات مؤقتة ويتم حذفها تلقائيًا.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>مسؤولية المستخدم</h2>
+    <p>
+      المستخدم مسؤول بالكامل عن طريقة استخدام المحتوى.
+      يجب الالتزام بقوانين وشروط كل منصة.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>الخصوصية</h2>
+    <p>
+      نحن لا نقوم بجمع أو تخزين أي معلومات شخصية.
+      لا تتبع، لا تسجيل، خصوصية كاملة.
+    </p>
+  </div>
+  `
+};
+
+function setLang(l){
+  document.documentElement.lang=l;
+  document.getElementById("content").innerHTML=data[l];
+}
+
+setLang("en");
+</script>
+
 </body>
 </html>
